@@ -1,30 +1,47 @@
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpModule } from '@angular/http';
+import {HttpModule, Http, RequestOptions} from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { SampleComponent } from './components/sample.component';
-import { SampleDirective } from './directives/sample.directive';
-import { SamplePipe } from './pipes/sample.pipe';
-import { SampleService } from './services/sample.service';
+import {NHttpModule} from '../../n-http';
+// import { SampleComponent } from './components/sample.component';
+// import { SampleDirective } from './directives/sample.directive';
+// import { SamplePipe } from './pipes/sample.pipe';
+// import { SampleService } from './services/sample.service';
 
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
+import {NHttpConfig} from "../../lib/n-http.config";
+import {NHttp} from "../../lib/n-http.service";
+
+export function NHttpServiceFactory(http: Http, options: RequestOptions) {
+  return new NHttp(new NHttpConfig({
+    globalHeaders: [{
+      'foo': 'bar'
+    }]
+  }), http, options);
+}
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    // NHttpModule
   ],
   declarations: [
     AppComponent,
-    SampleComponent,
-    SampleDirective,
-    SamplePipe
+    // SampleComponent,
+    // SampleDirective,
+    // SamplePipe
   ],
   providers: [
-    SampleService
+    {
+      provide: NHttp,
+      useFactory: NHttpServiceFactory,
+      deps: [Http, RequestOptions]
+    }
+    // SampleService
   ],
   bootstrap: [AppComponent]
 })
