@@ -21,6 +21,6 @@ export class AppComponent {
         .subscribe(
             res => console.info(res),
             err => console.warn(err)
-        )
+        );
   }
 }

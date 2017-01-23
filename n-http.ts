@@ -1,8 +1,9 @@
-import {NgModule, ModuleWithProviders, Provider, Optional, SkipSelf} from '@angular/core';
-import {HttpModule, Http, RequestOptions} from '@angular/http'
+import {NgModule, ModuleWithProviders, Provider, Optional, SkipSelf, ErrorHandler} from '@angular/core';
+import {HttpModule, Http, RequestOptions, BrowserXhr} from '@angular/http'
 
 import {NHttpConfig, INHttpConfig} from './lib/n-http.config';
 import { NHttp } from './lib/n-http.service';
+import {NHttpUpload} from "./lib/n-http-fileupload.service";
 
 // for manual imports
 export * from './lib/index';
@@ -10,9 +11,9 @@ export * from './lib/index';
 export const N_HTTP_PROVIDERS: Provider[] = [
   {
     provide: NHttp,
-    deps: [Http, RequestOptions],
-    useFactory: (http: Http, options: RequestOptions) => {
-      return new NHttp(new NHttpConfig(), http, options);
+    deps: [Http, RequestOptions, ErrorHandler],
+    useFactory: (http: Http, errorHandler: ErrorHandler, options: RequestOptions) => {
+      return new NHttp(new NHttpConfig(), http, errorHandler, options);
     }
   }
 ];
@@ -21,9 +22,9 @@ export function provideNHttp(config?: INHttpConfig): Provider[] {
   return [
     {
       provide: NHttp,
-      deps: [Http, RequestOptions],
-      useFactory: (http: Http, options: RequestOptions) => {
-        return new NHttp(new NHttpConfig(config), http, options);
+      deps: [Http, RequestOptions, ErrorHandler],
+      useFactory: (http: Http, errorHandler: ErrorHandler, options: RequestOptions) => {
+        return new NHttp(new NHttpConfig(config), http, errorHandler, options);
       }
     }
   ];
