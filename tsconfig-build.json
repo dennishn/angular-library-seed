@@ -9,7 +9,7 @@
     "noEmitHelpers": true
   },
   "files": [
-    "ngx-your-library.ts"
+    "n-http.ts"
   ],
   "exclude": [
     "node_modules",
@@ -20,5 +20,8 @@
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true,
     "useWebpackText": true
+  },
+  "angularCompilerOptions": {
+    "genDir": "compiled"
   }
 }

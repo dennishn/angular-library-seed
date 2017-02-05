@@ -1,12 +1,12 @@
 {
-  "name": "ngx-your-library",
-  "version": "0.0.0",
-  "description": "Your library description.",
-  "main": "ngx-your-library",
-  "typings": "ngx-your-library.d.ts",
+  "name": "n-http-2",
+  "version": "0.0.1",
+  "description": "Nodes ApS Angular Http Library.",
+  "main": "n-http",
+  "typings": "n-http.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/preboot/angular-library-seed.git"
+    "url": "git+https://github.com/dennishn/angular-library-seed.git"
   },
   "keywords": [
     "angular",
