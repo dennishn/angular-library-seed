@@ -3,13 +3,15 @@ import {Injectable} from '@angular/core';
 export interface INHttpConfig {
     globalHeaders: Array<Object>;
     nMeta: {
-        platform: string
-        environment: string
+        platform: string;
+        environment: string;
+        disable: boolean;
     }
 }
 
 export interface INHttpConfigOptional {
     globalHeaders?: Array<Object>;
+    nMeta?: Object;
 }
 
 export const NHttpConfigDefaults: INHttpConfig = {
@@ -18,7 +20,8 @@ export const NHttpConfigDefaults: INHttpConfig = {
     }],
     nMeta: {
         platform: 'web',
-        environment: 'development'
+        environment: 'development',
+        disable: false
     }
 };
 

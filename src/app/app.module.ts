@@ -1,25 +1,21 @@
-import { NgModule, ApplicationRef } from '@angular/core';
+import {NgModule, ApplicationRef, ErrorHandler} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpModule, Http, RequestOptions} from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import {NHttpModule} from '../../n-http';
-// import { SampleComponent } from './components/sample.component';
-// import { SampleDirective } from './directives/sample.directive';
-// import { SamplePipe } from './pipes/sample.pipe';
-// import { SampleService } from './services/sample.service';
 
 import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 import {NHttpConfig} from "../../lib/n-http.config";
 import {NHttp} from "../../lib/n-http.service";
 
-export function NHttpServiceFactory(http: Http, options: RequestOptions) {
+import {NErrorHandler} from '../../lib/n-error-handler/n-error-handler';
+
+export function NHttpServiceFactory(http: Http, errorHandler: ErrorHandler, options: RequestOptions) {
   return new NHttp(new NHttpConfig({
-    globalHeaders: [{
-      'foo': 'bar'
-    }]
-  }), http, options);
+
+  }), http, errorHandler, options);
 }
 
 @NgModule({
@@ -36,10 +32,11 @@ export function NHttpServiceFactory(http: Http, options: RequestOptions) {
     // SamplePipe
   ],
   providers: [
+    {provide: ErrorHandler, useClass: NErrorHandler},
     {
       provide: NHttp,
       useFactory: NHttpServiceFactory,
-      deps: [Http, RequestOptions]
+      deps: [Http, ErrorHandler, RequestOptions]
     }
     // SampleService
   ],
