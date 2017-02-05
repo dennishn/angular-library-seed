@@ -1,6 +1,6 @@
 {
   "name": "n-http-2",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Nodes ApS Angular Http Library.",
   "main": "n-http",
   "typings": "n-http.d.ts",
@@ -20,10 +20,7 @@
     "url": "https://github.com/preboot/angular-library-seed/issues"
   },
   "homepage": "https://github.com/preboot/angular-library-seed#readme",
-  "scripts": {
-  },
-  "dependencies": {
-  },
-  "devDependencies": {
-  }
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {}
 }
